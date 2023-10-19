@@ -4,8 +4,8 @@ ALYX, born from the creative minds of students at Aston University, is more than
 </p>
 
 <ul><b>TEAM MEMBERS</b></ul>
-Ali - Full Stack
-Abdul - Backend
-Umair - Full Stack
-Zaide - Frontend
-Amer - Frontend
+Ali - Full Stack<br>
+Abdul - Backend<br>
+Umair - Full Stack<br>
+Zaide - Frontend<br>
+Amer - Frontend<br>
