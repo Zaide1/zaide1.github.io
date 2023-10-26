@@ -24,8 +24,8 @@ body {
   }
   
   .topnav a.active {
-    background-color: #f53434;
     color: white;
+    text-decoration: underline;
   }
   
   .topnav .icon {
