@@ -20,6 +20,9 @@ body {
   height: auto; /* This ensures the aspect ratio is maintained */
 }
 
+.logo {
+  margin-bottom: 40px; /* Adjust the margin as needed */
+}
 /* Style the navigation links */
 .nav-links a {
   color: #f2f2f2;
