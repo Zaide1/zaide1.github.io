@@ -6,11 +6,11 @@ body {
   .topnav {
     overflow: hidden;
     background-color: #353434;
+    text-align: right;
   }
   
   .topnav a {
-    float: right;
-    display: block;
+    display: inline-block; /* Change display to inline-block */
     color: #f2f2f2;
     text-align: center;
     padding: 25px 15px;
