@@ -76,7 +76,8 @@ text-transform: uppercase;
 
 /* Style the text overlay */
 .hero-content {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.44); /* Semi-transparent black overlay */
+  border-radius: 35px;
   color: #fff;
   padding: 80px;
   max-width: 50%;
