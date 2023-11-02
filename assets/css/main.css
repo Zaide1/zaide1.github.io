@@ -143,3 +143,76 @@ text-transform: uppercase;
   margin-left: 30px;
   margin-right: 30px;
 }
+
+.square-image2 {
+  vertical-align: top;
+  width: 250px;
+  height: 250px; /* Set the width and height to maintain a square aspect ratio */
+  background-color: #d0cccc;
+  margin: 10px; /* Add some space between the square images */
+  border-radius: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+} 
+
+.full-width-section2 {
+  background-color: #fff; /* Background color for the full-width section */
+  color: #d0cccc; /* Text color */
+  text-align: center;
+  position: relative;
+  height: 30vh;
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+footer {
+  color: #717568;
+font-family: 'Abril Fatface', serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
+  background-color: #d7d6d6;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 25vh;
+}
+
+/* Style for the logo in the footer */
+.footer-logo {
+  padding-left: 10vh;
+  width: 300px; /* Adjust the width as needed */
+  height: auto; /* To maintain aspect ratio */
+}
+
+/* Style for the first row of links */
+.footer-links-row1 {
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for the individual link in the footer */
+.footer-link {
+  margin-right: 10px; /* Adjust the spacing between links */
+  text-decoration: none;
+  color: #000; /* Link color */
+  font-weight: bold;
+}
+
+/* Style for the second row of links */
+.footer-links-row2 {
+  list-style: none;
+  padding: 0;
+}
+
+/* Apply similar styling to the second row links as the first row */
+.footer-links-row2 .footer-link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
