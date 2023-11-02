@@ -111,11 +111,12 @@ text-transform: uppercase;
   color: #ffffff; /* Text color */
   text-align: center;
   position: relative;
-  height: 30vh;
+  height: 50vh;
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Lato', sans-serif;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
+  font-size: 3vh;
 }
 
 .info-box {
@@ -128,6 +129,7 @@ text-transform: uppercase;
 
 }
 .image-container {
+  margin-top: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,6 +144,7 @@ text-transform: uppercase;
   border-radius: 15px;
   margin-left: 30px;
   margin-right: 30px;
+  padding: 20px;
 }
 
 .square-image2 {
@@ -160,7 +163,7 @@ text-transform: uppercase;
   color: #d0cccc; /* Text color */
   text-align: center;
   position: relative;
-  height: 30vh;
+  height: 40vh;
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Lato', sans-serif;
   font-family: 'Roboto', sans-serif;
@@ -216,3 +219,4 @@ font-family: 'Roboto', sans-serif;
   color: #000;
   font-weight: bold;
 }
+html{scroll-behavior:smooth}
