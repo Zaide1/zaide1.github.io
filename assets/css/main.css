@@ -1,7 +1,7 @@
 /* Reset some default styles */
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* Style the navbar */
@@ -13,7 +13,11 @@ body {
   padding: 10px; /* Adjust the padding */
   height: 80px; /* Adjust the height */
   font-family: 'Josefin Sans', sans-serif;
-  text-transform: uppercase;
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
+text-transform: uppercase;
+
+
 }
 
 /* Style the logo */
@@ -25,7 +29,6 @@ body {
 .logo {
   margin-bottom: 40px; /* Adjust the margin as needed */
 }
-
 /* Style the navigation links */
 .nav-links a {
   color: #f2f2f2;
@@ -35,11 +38,9 @@ body {
   padding-left: 1.5vh;
   padding-right: 1.5vh;
 }
-
 .nav-links a:hover {
   color: #2da6bb; /* Change this to the color you want on hover */
 }
-
 .nav-links a.active {
   text-decoration: underline; /* Change this to the color you want for active links */
   color: #2da6bb;
@@ -47,21 +48,19 @@ body {
 
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {
-  .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-  }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .nav-links {
-      margin-top: 10px;
-      flex-direction: column; /* Change to vertical alignment */
-  }
+    .nav-links {
+        margin-top: 10px;
+    }
 
-  .nav-links a {
-      margin: 5px 0;
-  }
+    .nav-links a {
+        margin: 5px 0;
+    }
 }
-
 /* Style the hero section */
 .hero {
   background-image: url('/assets/img/hero-bg.jpg'); /* Replace with your image path */
@@ -94,6 +93,7 @@ body {
   font-size: 18px;
 }
 
+
 .hero-content a {
   border-radius: 20px;
   display: inline-block;
@@ -103,11 +103,11 @@ body {
   padding: 10px 20px;
   margin-top: 10px;
   font-size: 5vh;
+
 }
 
-/* Style for full-width sections */
-.full-width-section, .full-width-section2 {
-  background-color: #D7D6D6; /* Background color for the full-width section */
+.full-width-section {
+  background-color: #D7D6D6;; /* Background color for the full-width section */
   color: #ffffff; /* Text color */
   text-align: center;
   position: relative;
@@ -125,15 +125,15 @@ body {
   padding: 10px;
   cursor: pointer;
   position: relative;
-}
 
+}
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.square-image, .square-image2 {
+.square-image {
   vertical-align: top;
   width: 250px;
   height: 250px; /* Set the width and height to maintain a square aspect ratio */
@@ -144,13 +144,35 @@ body {
   margin-right: 30px;
 }
 
-/* Style for the footer */
-footer {
-  color: #717568;
-  font-family: 'Abril Fatface', serif;
+.square-image2 {
+  vertical-align: top;
+  width: 250px;
+  height: 250px; /* Set the width and height to maintain a square aspect ratio */
+  background-color: #d0cccc;
+  margin: 10px; /* Add some space between the square images */
+  border-radius: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+} 
+
+.full-width-section2 {
+  background-color: #fff; /* Background color for the full-width section */
+  color: #d0cccc; /* Text color */
+  text-align: center;
+  position: relative;
+  height: 30vh;
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Lato', sans-serif;
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+footer {
+  color: #717568;
+font-family: 'Abril Fatface', serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
   background-color: #d7d6d6;
   padding: 20px;
   display: flex;
