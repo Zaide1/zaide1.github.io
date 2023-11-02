@@ -221,3 +221,6 @@ font-family: 'Roboto', sans-serif;
   color: #000;
   font-weight: bold;
 }
+html {
+  scroll-behavior: smooth;
+}
