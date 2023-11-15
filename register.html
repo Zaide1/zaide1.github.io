@@ -32,15 +32,16 @@
       </div>
   </nav>
 
-  <form method="post" action="backend/login.php">
-    <!-- Form fields for collecting user information -->
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <!-- Other registration fields -->
-    <button type="submit" name="submitted">Sign In</button>
-  </form>
-  <a href="register.html">Already have an account?</a>
-
-  
+    <form method="post" action="backend/register.php">
+        <!-- Form fields for collecting user information -->
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="first-name" placeholder="First Name">
+        <input type="text" name="last-name" placeholder="Last Name">
+        <!-- Other registration fields -->
+        <button type="submit" name="submitted">Register</button>
+    </form>
+    
 </body>
 </html>
