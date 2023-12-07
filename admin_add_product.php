@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-group">
-                <label for="categories">Category:</label>
+                <label for="categories">category:</label>
                 <select class="form-control" name="category" id="category_select">
                     <?php foreach ($categories as $category) { ?>
                         <option value="<?php echo $category['category_id']; ?>">
