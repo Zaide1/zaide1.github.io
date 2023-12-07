@@ -53,35 +53,64 @@
 
       <hr>
 
-      <form id="profile-form">
+      <form id="profile-form" style="display: none;">
+        <button id="close-profile-form" class="close-button">X</button>
         <h2>Edit Profile</h2>
         <label for="new-username">Username:</label>
         <input type="text" id="new-username" name="new-username" placeholder="Enter your new username">
-
+    
         <label for="new-email">Email:</label>
         <input type="email" id="new-email" name="new-email" placeholder="Enter your new email">
-
+    
         <label for="new-phone">Phone:</label>
         <input type="text" id="new-phone" name="new-phone" placeholder="Enter your new phone number">
-
+    
         <button type="submit">Save Changes</button>
-      </form>
-
-      <hr>
-
-      <form id="password-form">
+    </form>
+    
+    <button id="edit-profile-button">Edit Profile</button>
+    
+    <script>
+        document.getElementById('edit-profile-button').addEventListener('click', function() {
+            var profileForm = document.getElementById('profile-form');
+            profileForm.style.display = (profileForm.style.display === 'none' || profileForm.style.display === '') ? 'block' : 'none';
+        });
+    
+        document.getElementById('close-profile-form').addEventListener('click', function() {
+            var profileForm = document.getElementById('profile-form');
+            profileForm.style.display = 'none';
+        });
+    </script>
+    
+    
+    <form id="password-form" style="display: none;">
+        <button id="close-password-form" class="close-button">X</button>
         <h2>Change Password</h2>
         <label for="current-password">Current Password:</label>
         <input type="password" id="current-password" name="current-password" placeholder="Enter your current password">
-
+    
         <label for="new-password">New Password:</label>
         <input type="password" id="new-password" name="new-password" placeholder="Enter your new password">
-
+    
         <label for="confirm-password">Confirm New Password:</label>
         <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password">
-
+    
         <button type="submit">Change Password</button>
-      </form>
+    </form>
+    
+    <button id="change-password-button">Change Password</button>
+    
+    <script>
+        document.getElementById('change-password-button').addEventListener('click', function() {
+            var passwordForm = document.getElementById('password-form');
+            passwordForm.style.display = (passwordForm.style.display === 'none' || passwordForm.style.display === '') ? 'block' : 'none';
+        });
+    
+        document.getElementById('close-password-form').addEventListener('click', function() {
+            var passwordForm = document.getElementById('password-form');
+            passwordForm.style.display = 'none';
+        });
+    </script>
       <hr>
       <section class="orders-section">
         <h2>My Orders</h2>
