@@ -13,7 +13,6 @@ if(isset($_POST['submitted'])){
     
         $stat = $db->prepare('SELECT Password FROM user WHERE Username = ?');
         $stat -> execute(array($username));
-        echo($username); 
 
         if($stat -> rowCount()>0){
             $row=$stat->fetch();
