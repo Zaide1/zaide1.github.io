@@ -6,10 +6,11 @@
     $selected_sizes = $_POST['selected_sizes'];
     $colour_input = $_POST['colours'];
     $colours_array = explode(',', $colour_input);
+    $price = $_POST['price'];
 
 
     try{
-        $stat = $db ->prepare("INSERT INTO product VALUES (default,?,?,?)");
+        $stat = $db ->prepare("INSERT INTO product VALUES (default,?,?,?,?)");
         $stat ->execute(array($product_name,$category,$description));
         $product_id = $db->lastInsertId();
 
@@ -40,9 +41,9 @@
             // Process sizes separately for each color
             foreach ($selected_sizes as $size) {
                 // Insert into product_entry using the obtained colour_id and size
-                $insert_variant_query = "INSERT INTO product_entry VALUES (DEFAULT, ?, ?, ?, 0, 0)";
+                $insert_variant_query = "INSERT INTO product_entry VALUES (DEFAULT, ?, ?, ?, ?, 0)";
                 $stmt_variant = $db->prepare($insert_variant_query);
-                $stmt_variant->execute([$product_id, $size, $colour_id]);
+                $stmt_variant->execute([$product_id, $size, $colour_id,$price]);
             }
         }
         header('Location: ../index.html');
