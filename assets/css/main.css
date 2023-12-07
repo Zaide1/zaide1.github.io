@@ -143,6 +143,7 @@ z-index: 2;
   font-size: 3vh;
 }
 
+
 .info-box {
   max-width: 20%; /* Maximum width for the content */
   margin: 0 auto; /* Center the content horizontally */
@@ -366,6 +367,22 @@ cursor: pointer;
   border-top: 1px solid #e5e5e5;
 }
 
+
+textarea{
+  display: block;
+height: 50px;
+width: 100%;
+background-color: rgba(167, 13, 13, 0.07);
+border-radius: 3px;
+padding: 0 10px;
+margin-top: 8px;
+font-size: 14px;
+font-weight: 300;
+color: #000000;
+min-height: 150px;
+
+
+}
 .footer > * {
   flex:  1 100%;
 }
