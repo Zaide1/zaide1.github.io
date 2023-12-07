@@ -37,6 +37,33 @@
         
     </div>
 </div>
+<?php
+  require_once('backend/connect_database.php');
+
+  $items = []; // Initialize an array to store the items
+  $query = $db->query("SELECT product_name, default_price,product_id FROM product WHERE category_id = 1");
+  if ($query) {
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+      $items[] = $row; // Store each item in the array
+    }
+  }
+  ?>
+
+  <!-- Displaying the fetched items in an unordered list -->
+  <ul>
+  <?php foreach ($items as $item) : ?>
+    <li>
+      <div class="square-image">
+        <a href="product.php?id=<?php echo htmlspecialchars($item['product_id']); ?>">
+          <img src="assets/img/outer.png" alt="<?php echo $item['product_name']; ?>" width="250px" height="250px">
+        </a>
+      </div>
+      <a href="items_buy.php?id=<?php echo htmlspecialchars($item['product_id']); ?>">
+        <?php echo $item['product_name']; ?> - $<?php echo $item['default_price']; ?>
+      </a>
+    </li>
+  <?php endforeach; ?>
+</ul>
 
 <div class="mens_inventory">
   <div class="full-width-section">
