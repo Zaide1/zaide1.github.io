@@ -66,28 +66,39 @@ try{
       </div>
   </nav>
 
-  <div class="item-details">
-    <h2>Item Details</h2>
-    <div class="image-container">
-      <?php
-          $image_directory = 'assets/img/' . $row['product_name'] . '.webp'; // images are in webp format
-          $default_image = 'assets/img/outer.png'; // Default image path if product image not found
-          $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
-        ?>
-        <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px">
-        
-    </div>
-    <div class="description">
-        <h3>Product Name</h3>
-        <p><?php echo isset($row['product_name']) ? $row['product_name'] : 'Product not found'; ?></p>
-        <p>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></p>
-    </div>
-    <div></div>
-    <div class="purchase-options">
-        <button action='backend/add_to_cart.php'>Add to Cart</button>
-        <button>Buy Now</button>
+  <div class="body2">
+    <div class="container">
+        <div class="imgBx">
+        <?php
+            $image_directory = 'assets/img/' . $row['product_name'] . '.webp'; // images are in webp format
+            $default_image = 'assets/img/outer.png'; // Default image path if product image not found
+            $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
+            ?>
+            <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px">
+            
+        </div>
+        <div class="details">
+                <div class="content">
+                    <h2><?php echo isset($row['product_name']) ? $row['product_name'] : 'Product not found'; ?></h2>
+                    <p><?php echo isset($row['description']) ? $row['description'] : 'Description not found'; ?></p>
+                    <p class="product-sizes">Available sizes:
+                    </p>
+                    <h3>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></h3>
+                    <div class="purchase-options">
+                    <form method="post" action="add_cart.php">
+                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                        <!-- Add more input fields as needed -->
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+                    
+                </div>
+                
+
+        </div>
     </div>
 </div>
+
 
 
 

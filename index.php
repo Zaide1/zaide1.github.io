@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (isset($_SESSION['username'])) {
+    $loggedInUser = $_SESSION['username'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,18 +26,25 @@
   <body>
     <nav class="navbar">
       <div class="logo">
-         <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
+          <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
-          <a href="index.html"class="active" >Home</a>
-          <a href="mens.php" >Mens</a>
+          <a href="index.php" class="active">Home</a>
+          <a href="mens.php">Mens</a>
           <a href="womens.html">Womens</a>
           <a href="featured.html">Featured</a>
-          <a href="myaccount.html">My Account</a>
-          <a href="login.html" >Login</a>
+          <a href="myaccount.html">
+              <?php if (isset($loggedInUser)) : ?>
+                  <?php echo $loggedInUser; ?>
+              <?php else : ?>
+                  Login
+              <?php endif; ?>
+          </a>
           <a href="contact.html">Contact</a>
       </div>
   </nav>
+  
+
 
   <div class="hero">
     <div class="hero-content">
