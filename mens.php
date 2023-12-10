@@ -17,6 +17,17 @@
     <title>Clothing Store</title>
   </head>
   <body>
+    <?php
+    require_once('backend/connect_database.php');
+
+    $items = []; // Initialize an array to store the items
+    $query = $db->query("SELECT product_name, default_price,product_id FROM product WHERE category_id = 1");
+    if ($query) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $items[] = $row; // Store each item in the array
+      }
+    }
+  ?>
     <nav class="navbar">
       <div class="logo">
          <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
@@ -39,6 +50,7 @@
 </div>
 
 <div class="Items">
+<<<<<<< HEAD:mens.html
 
   <div class="Item">
     <a href="" class="Item__link">
@@ -98,6 +110,24 @@
     </a>
   </div>
 
+=======
+  <?php foreach ($items as $item) : ?>
+    <?php
+    $image_directory = 'assets/img/' . $item['product_name'] . '.webp'; // images are in webp format
+    $default_image = 'assets/img/outer.png'; // Default image path if product image not found
+    $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
+    ?>
+    <div class="Item">
+      <a href="items_buy.php?id=<?php echo htmlspecialchars($item['product_id']); ?>" class="Item__link">
+        <div class="ImageContainer">
+          <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px" class="Image">
+        </div>
+        <div class="Item__title"><?php echo $item['product_name']; ?></div>
+        <div class="Item__price">£ <?php echo $item['default_price']; ?></div>
+      </a>
+    </div>
+  <?php endforeach; ?>
+>>>>>>> e4e73b694038b540cf927d4ede5ad9705f7e4ff9:mens.php
 </div>
 
   
