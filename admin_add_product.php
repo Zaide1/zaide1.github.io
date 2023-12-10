@@ -64,6 +64,11 @@
                 ?>
             </div>
 
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" class="form-control" name="price">
+            </div>
+
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
     </div>

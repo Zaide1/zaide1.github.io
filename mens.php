@@ -17,6 +17,17 @@
     <title>Clothing Store</title>
   </head>
   <body>
+    <?php
+    require_once('backend/connect_database.php');
+
+    $items = []; // Initialize an array to store the items
+    $query = $db->query("SELECT product_name, default_price,product_id FROM product WHERE category_id = 1");
+    if ($query) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $items[] = $row; // Store each item in the array
+      }
+    }
+  ?>
     <nav class="navbar">
       <div class="logo">
          <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
@@ -39,67 +50,22 @@
 </div>
 
 <div class="Items">
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/ripcurl-corp-tee-black.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/C/T/CTESI4RPa.jpg" alt="Ripcurl Corp Tee Black" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl Corp Tee Black</div>
-      <div class="Item__price">€ 20.87</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/ripcurl-3d-icon-tee-tapestry-marle.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/C/T/CTESC4RUa.jpg" alt="Ripcurl 3D Icon Tee Tapestry Marle" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl 3D Icon Tee Tapestry Marle</div>
-      <div class="Item__price">€ 20.87</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/ripcurl-diamond-tee-dark-marle.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/355x/9df78eab33525d08d6e5fb8d27136e95/C/T/CTESO4RIa.jpg" alt="Ripcurl Diamond Tee Dark Marle" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl Diamond Tee Dark Marle</div>
-      <div class="Item__price">€ 23.19</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/mens/mens-surf-fashion/t-shirts/ripcurl-aggroethnic-tee-aqua-sea.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/C/T/CTEAP4RIa.jpg" alt="Ripcurl Aggroethnic Tee Aqua Sea" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl Aggroethnic Tee Aqua Sea</div>
-      <div class="Item__price">€ 29.25</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/mens/mens-surf-fashion/t-shirts/ripcurl-rounded-tee-mood-indigo-marle.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/C/T/CTESD4RIa.jpg" alt="Ripcurl Rounded Tee Mood Indigo Marle" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl Rounded Tee Mood Indigo Marle</div>
-      <div class="Item__price">€ 21.06</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="https://www.shore.co.uk/index.php/mens/mens-surf-fashion/t-shirts/ripcurl-original-wetsuit-logo-tee-black.html" class="Item__link">
-      <div class="ImageContainer">
-        <img src="https://www.shore.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/C/T/CTEDA4RPa.jpg" alt="Ripcurl Original Wetsuit Logo Tee Black" class="Image">
-      </div>
-      <div class="Item__title">Ripcurl Original Wetsuit Logo Tee Black</div>
-      <div class="Item__price">€ 29.25</div>
-    </a>
-  </div>
-
+  <?php foreach ($items as $item) : ?>
+    <?php
+    $image_directory = 'assets/img/' . $item['product_name'] . '.webp'; // images are in webp format
+    $default_image = 'assets/img/outer.png'; // Default image path if product image not found
+    $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
+    ?>
+    <div class="Item">
+      <a href="items_buy.php?id=<?php echo htmlspecialchars($item['product_id']); ?>" class="Item__link">
+        <div class="ImageContainer">
+          <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px" class="Image">
+        </div>
+        <div class="Item__title"><?php echo $item['product_name']; ?></div>
+        <div class="Item__price">£ <?php echo $item['default_price']; ?></div>
+      </a>
+    </div>
+  <?php endforeach; ?>
 </div>
 
   

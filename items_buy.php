@@ -46,18 +46,6 @@ try{
         } else{
             echo 'Product variants not found';
         }
-
-        $variant_colour_stmt = $db->prepare('SELECT DISTINCT colour_id FROM product_entry WHERE product_id = :id;');
-        $variant_colour_stmt->bindParam(':id', $product_id);
-        $variant_colour_stmt->execute();
-
-        if ($variant_colour_stmt->rowCount() > 0) {
-            $variant_colours = $variant_colour_stmt->fetchAll(PDO::FETCH_COLUMN);
-        } else {
-            echo 'Colour variants not found';
-        }
-
-        
     }
 } catch(PDOException $e){
     echo 'Error: ' . $e->getMessage();
@@ -65,7 +53,7 @@ try{
 ?>
     <nav class="navbar">
       <div class="logo">
-         <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
+         <a href="index.html"><img src="/assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
           <a href="index.html" >Home</a>
@@ -81,13 +69,23 @@ try{
   <div class="item-details">
     <h2>Item Details</h2>
     <div class="image-container">
-        <img src="assets/img/outer.png" alt="Item Image" width="400px" height="400px">
+      <?php
+          $image_directory = 'assets/img/' . $row['product_name'] . '.webp'; // images are in webp format
+          $default_image = 'assets/img/outer.png'; // Default image path if product image not found
+          $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
+        ?>
+        <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px">
+        
     </div>
     <div class="description">
         <h3>Product Name</h3>
         <p><?php echo isset($row['product_name']) ? $row['product_name'] : 'Product not found'; ?></p>
         <p>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></p>
     </div>
+    <div></div>
+    <form action="add_cart.php">
+
+    </form>
     <div class="purchase-options">
         <button>Add to Cart</button>
         <button>Buy Now</button>
@@ -96,11 +94,9 @@ try{
 
 
 
+
+
 </body>
-
-
-
-
 
   <footer class="footer">
     <div class="footer__addr">
