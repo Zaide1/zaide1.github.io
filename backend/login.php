@@ -21,7 +21,6 @@ if(isset($_POST['submitted'])){
                 session_start();
                 $_SESSION['username'] = $_POST['username'];
                 header("Location:../index.html");
-                exit();
             } else{
                 echo "<p style='color:red'> Error logging in, passwords do not match </p>";
                 

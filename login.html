@@ -25,7 +25,7 @@
          <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
-          <a href="index.html" >Home</a>
+          <a href="index.php" >Home</a>
           <a href="mens.html">Mens</a>
           <a href="womens.html" >Womens</a>
           <a href="featured.html" >Featured</a>
@@ -35,11 +35,12 @@
       </div>
   </nav>
 
+
   <div class="background">
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form action="backend/login.php">
+<form action="backend/login.php" method="post">
     <h3>Login Here</h3>
 
     <label for="username">Username</label>
@@ -49,8 +50,9 @@
     <input type="password" placeholder="Password" id="password" name="password">
 
     <button>Log In</button>
+	<input type="hidden" name="submitted">
 <h6>Dont have an account? <a href="register.html">click here</a> to register</h6>
-</form>
+  </form>
 
   
 </body>

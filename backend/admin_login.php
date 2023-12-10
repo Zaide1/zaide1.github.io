@@ -20,7 +20,7 @@ if(isset($_POST['submitted'])){
             if(password_verify($password,$row['password'])){
                 session_start();
                 $_SESSION['username'] = $_POST['username'];
-                header("Location:../index.html");
+                header("Location:../admin_homepage.html");
                 exit();
             } else{
                 echo "<p style='color:red'> Error logging in, passwords do not match </p>";
@@ -35,6 +35,7 @@ if(isset($_POST['submitted'])){
         exit;
 
     }
+    echo 'Is this page loading';
 
 }
 ?>

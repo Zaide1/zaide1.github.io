@@ -83,11 +83,8 @@ try{
         <p>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></p>
     </div>
     <div></div>
-    <form action="add_cart.php">
-
-    </form>
     <div class="purchase-options">
-        <button>Add to Cart</button>
+        <button action='backend/add_to_cart.php'>Add to Cart</button>
         <button>Buy Now</button>
     </div>
 </div>

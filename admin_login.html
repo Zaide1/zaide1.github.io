@@ -39,7 +39,7 @@
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form action="backend/admin_login.php">
+<form action="backend/admin_login.php" method="post">
     <h3>Admin Login</h3>
 
     <label for="username">Username</label>
@@ -49,8 +49,9 @@
     <input type="password" placeholder="Password" id="password" name="password">
 
     <button>Log In</button>
-<h6>Go back to customer login? <a href="login.html">click here</a> to register</h6>
+    <input type="hidden" name="submitted">
 </form>
+<h6>Go back to customer login? <a href="login.html">click here</a> to register</h6>
 
   
 </body>
