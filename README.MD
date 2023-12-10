@@ -10,3 +10,4 @@ Abdul - Backend<br>
 Umair - Full Stack<br>
 Zaide - Frontend<br>
 Amer - Frontend<br>
+Yug - Backend<br>
