@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Lato:wght@300&family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <title>Clothing Store</title>
+  </head>
+  <body>
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['username'])) {
+
+
+    // Redirect to the login page
+    header("Location: login.html");
+    exit();
+}
+?>
+    <nav class="navbar">
+      <div class="logo">
+         <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
+      </div>
+      <div class="nav-links">
+          <a href="index.php" >Home</a>
+          <a href="mens.php">Mens</a>
+          <a href="womens.php" >Womens</a>
+          <a href="cart.php" >Basket</a>
+          <a href="myaccount.php" class="active">My Account</a>
+          <a href="login.html" >Login</a>
+          <a href="contact.html">Contact</a>
+      </div>
+  </nav>
+
+  <div class="container2">
+  
+    <div class="account-info">
+      <section class="profile-section">
+        <h2>Profile Information</h2>
+        <div class="profile-field">
+          Username: 
+          user
+        </div>
+        <div class="profile-field">
+          E-mail: 
+          email@email.com
+        </div>
+        <div class="profile-field">
+          Phone:
+          07470818294
+        </div>
+      </section>
+
+      <hr>
+
+      <form id="profile-form" style="display: none;">
+        <button id="close-profile-form" class="close-button">X</button>
+        <h2>Edit Profile</h2>
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" name="new-username" placeholder="Enter your new username">
+    
+        <label for="new-email">Email:</label>
+        <input type="email" id="new-email" name="new-email" placeholder="Enter your new email">
+    
+        <label for="new-phone">Phone:</label>
+        <input type="text" id="new-phone" name="new-phone" placeholder="Enter your new phone number">
+    
+        <button type="submit">Save Changes</button>
+    </form>
+    
+    <button id="edit-profile-button">Edit Profile</button>
+    
+    <script>
+        document.getElementById('edit-profile-button').addEventListener('click', function() {
+            var profileForm = document.getElementById('profile-form');
+            profileForm.style.display = (profileForm.style.display === 'none' || profileForm.style.display === '') ? 'block' : 'none';
+        });
+    
+        document.getElementById('close-profile-form').addEventListener('click', function() {
+            var profileForm = document.getElementById('profile-form');
+            profileForm.style.display = 'none';
+        });
+    </script>
+    
+    
+    <form id="password-form" style="display: none;">
+        <button id="close-password-form" class="close-button">X</button>
+        <h2>Change Password</h2>
+        <label for="current-password">Current Password:</label>
+        <input type="password" id="current-password" name="current-password" placeholder="Enter your current password">
+    
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="new-password" placeholder="Enter your new password">
+    
+        <label for="confirm-password">Confirm New Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password">
+    
+        <button type="submit">Change Password</button>
+    </form>
+    
+    <button id="change-password-button">Change Password</button>
+    
+    <script>
+        document.getElementById('change-password-button').addEventListener('click', function() {
+            var passwordForm = document.getElementById('password-form');
+            passwordForm.style.display = (passwordForm.style.display === 'none' || passwordForm.style.display === '') ? 'block' : 'none';
+        });
+    
+        document.getElementById('close-password-form').addEventListener('click', function() {
+            var passwordForm = document.getElementById('password-form');
+            passwordForm.style.display = 'none';
+        });
+    </script>
+      <hr>
+      <section class="orders-section">
+        <h2>My Orders</h2>
+        <ul id="orders-list">
+          <li>
+            <span>Order 1</span>
+            <div class="order-actions">
+              <button class="edit-button">Edit</button>
+              <button class="delete-button">Delete</button>
+            </div>
+          </li>
+          <li>
+            <span>Order 2</span>
+            <div class="order-actions">
+              <button class="edit-button">Edit</button>
+              <button class="delete-button">Delete</button>
+            </div>
+          </li>
+          <li>
+            <span>Order 3</span>
+            <div class="order-actions">
+              <button class="edit-button">Edit</button>
+              <button class="delete-button">Delete</button>
+            </div>
+          </li>
+          <!-- Add more list items for each order -->
+        </ul>
+      </section>
+   
+      <hr>
+      <div class="logout-button">
+        <button id="logout-button">Logout</button>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
