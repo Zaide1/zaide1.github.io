@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -35,24 +35,44 @@
       </div>
   </nav>
 
+
   <div class="background">
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form action="backend/login.php">
+<form action="backend/login.php" method="post">
     <h3>Login Here</h3>
+    
+    <!-- Wrong Login Message -->
+    <p id="loginError" name="loginError">Login information incorrect.</p>
 
     <label for="username">Username</label>
     <input type="text" placeholder="Email or Phone" id="username" name="username">
 
     <label for="password">Password</label>
     <input type="password" placeholder="Password" id="password" name="password">
-
+    
+    
     <button>Log In</button>
-<h6>Dont have an account? <a href="register.html">click here</a> to register</h6>
-</form>
+    <input type="hidden" name="submitted">
+    <h6>Dont have an account? <a href="register.html">click here</a> to register</h6>
+  </form>
 
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if the URL contains the loginError query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const loginError = urlParams.get('loginError');
+        if (loginError) {
+            // Find the loginError element and add the "show" class
+            const errorElement = document.getElementById('loginError');
+            if (errorElement) {
+                errorElement.classList.add('show');
+            }
+        }
+    });
+    </script>
+    
 </body>
 
 </html>
