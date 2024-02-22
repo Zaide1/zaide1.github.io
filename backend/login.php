@@ -9,7 +9,8 @@ if(isset($_POST['submitted'])){
 
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+        $loginError = $_POST['loginError'];
+ 
     
         $stat = $db->prepare('SELECT Password FROM user WHERE Username = ?');
         $stat -> execute(array($username));
@@ -21,13 +22,17 @@ if(isset($_POST['submitted'])){
                 session_start();
                 $_SESSION['username'] = $_POST['username'];
                 header("Location:../index.html");
-                exit();
             } else{
                 echo "<p style='color:red'> Error logging in, passwords do not match </p>";
                 
             }
         }else{
-            echo "<p>Login information incorrect</p>";
+            
+            // echo "<p>Login information incorrect</p>";
+            // Inside your else blocks where login fails
+            header("Location: ../login.html?loginError=true");
+            exit();
+
         }
     } catch(PDOException $ex){
         echo("Failed to connect to the database <br>");
