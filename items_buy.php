@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -12,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="http://localhost/zaide1.github.io/assets/css/main.css">
 
     <title>Clothing Store</title>
   </head>
@@ -56,33 +55,47 @@ try{
          <a href="index.html"><img src="/assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
-          <a href="index.html" >Home</a>
-          <a href="mens.html" class="active">Mens</a>
+          <a href="index.php" >Home</a>
+          <a href="mens.php" class="active">Mens</a>
           <a href="womens.html">Womens</a>
-          <a href="featured.html">Featured</a>
+          <a href="cart.php">Basket</a>
           <a href="myaccount.html">My Account</a>
           <a href="login.html" >Login</a>
           <a href="contact.html">Contact</a>
       </div>
   </nav>
 
-  <div class="body2">
+<div class="body2">
     <div class="container">
         <div class="imgBx">
         <?php
-            $image_directory = 'assets/img/' . $row['product_name'] . '.webp'; // images are in webp format
+            $image_directory = 'http://localhost/zaide1.github.io/assets/img/' . $row['product_name'] . '.webp'; // images are in webp format
             $default_image = 'assets/img/outer.png'; // Default image path if product image not found
             $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
             ?>
             <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px">
             
-        </div>
+        </div>    
+            <style>
+            form {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+        /* Add more styling as needed */
+    </style>
+            
         <div class="details">
                 <div class="content">
                     <h2><?php echo isset($row['product_name']) ? $row['product_name'] : 'Product not found'; ?></h2>
                     <p><?php echo isset($row['description']) ? $row['description'] : 'Description not found'; ?></p>
                     <p class="product-sizes">Available sizes:
-                    </p>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="0" max="12" step="1" value="1">
                     <h3>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></h3>
                     <div class="purchase-options">
                     <form method="post" action="add_cart.php">
@@ -98,7 +111,6 @@ try{
         </div>
     </div>
 </div>
-
 
 
 

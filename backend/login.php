@@ -20,7 +20,7 @@ if(isset($_POST['submitted'])){
             if(password_verify($password,$row['Password'])){
                 session_start();
                 $_SESSION['username'] = $_POST['username'];
-                header("Location:../index.html");
+                header("Location:../index.php");
             } else{
                 echo "<p style='color:red'> Error logging in, passwords do not match </p>";
                 

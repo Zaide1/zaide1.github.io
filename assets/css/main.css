@@ -143,20 +143,6 @@ z-index: 2;
   font-size: 3vh;
 }
 
-.full-width-section-contacts {
-  background-color: #D7D6D6;
-  color: #ffffff;
-  text-align: center;
-  padding-left: 5%; 
-  padding-right: 5%;
-  position: relative;
-  font-family: 'Josefin Sans', sans-serif;
-  font-family: 'Lato', sans-serif;
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  font-size: 3vh;
-}
-
 
 .info-box {
   max-width: 20%; /* Maximum width for the content */
@@ -306,7 +292,7 @@ background: linear-gradient(
 right: -30px;
 bottom: -80px;
 }
-form{
+#form2{
 height: 540px;
 width: 400px;
 margin: 80px auto;
@@ -621,6 +607,8 @@ input[type="submit"] {
   margin: 20px;
 }
 
+
+
 .container .imgBx {
   position: relative;
   display: flex;
@@ -794,3 +782,106 @@ input[type="submit"] {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,800&display=swap');
+
+.container2 {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  width: 100%; /* Use 100% to make it responsive */
+  max-width: 1300px; /* Set a maximum width if needed */
+  background: #fff;
+  margin: 20px auto; /* Set auto margin to center both horizontally and vertically */
+}
+
+
+
+h1 {
+  margin-bottom: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.account-info,
+.previous-orders {
+  width: 80%;
+  margin: 20px 0;
+}
+
+/* Style the profile section */
+.profile-section {
+  margin-bottom: 20px;
+}
+
+.profile-field {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style the edit profile form */
+#profile-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#profile-form label,
+#profile-form input {
+  margin-bottom: 15px;
+}
+
+#profile-form button {
+  background-color: #0f1108;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Style the orders section */
+
+#orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#orders-list li {
+  width: calc(33.33% - 10px);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.order-actions button {
+  margin-left: 10px;
+  background-color: #0f1108;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+}
+
+/* Style the logout button */
+.logout-button {
+  margin-top: 20px;
+}
+
+#logout-button {
+  background-color: #d7d6d6;
+  color: #000;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+#logout-button:hover {
+  background-color: #2da6bb;
+  color: #fff;
+}

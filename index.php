@@ -31,9 +31,10 @@ if (isset($_SESSION['username'])) {
       <div class="nav-links">
           <a href="index.php" class="active">Home</a>
           <a href="mens.php">Mens</a>
-          <a href="womens.html">Womens</a>
-          <a href="featured.html">Featured</a>
-          <a href="myaccount.html">
+          <a href="womens.php">Womens</a>
+          <a href="cart.php">Basket</a>
+          <a href="myaccount.php">My Account</a>
+<a href="">
               <?php if (isset($loggedInUser)) : ?>
                   <?php echo $loggedInUser; ?>
               <?php else : ?>
@@ -69,7 +70,7 @@ if (isset($_SESSION['username'])) {
   </div>
 </div>
 <div class="full-width-section2">
-  <a href="index.html"><img src="assets/img/arrow-down.png" alt="Logo" width="80px"></a>
+  <a href="index.php"><img src="assets/img/arrow-down.png" alt="Logo" width="80px"></a>
   <div class="info-box">
     shop by designer<br>
     Explore featured designers<br>

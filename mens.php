@@ -28,20 +28,26 @@
       }
     }
   ?>
-    <nav class="navbar">
+   <nav class="navbar">
       <div class="logo">
-         <a href="index.html"><img src="assets/img/logo-header.png" alt="Logo"></a>
+          <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
-          <a href="index.html" >Home</a>
-          <a href="mens.html" class="active">Mens</a>
-          <a href="womens.html">Womens</a>
-          <a href="featured.html">Featured</a>
-          <a href="myaccount.html">My Account</a>
-          <a href="login.html" >Login</a>
+          <a href="index.php" >Home</a>
+          <a href="mens.php"class="active">Mens</a>
+          <a href="womens.php">Womens</a>
+          <a href="cart.php">Basket</a>
+          <a href="myaccount.html">
+              <?php if (isset($loggedInUser)) : ?>
+                  <?php echo $loggedInUser; ?>
+              <?php else : ?>
+                  Login
+              <?php endif; ?>
+          </a>
           <a href="contact.html">Contact</a>
       </div>
   </nav>
+  
   <div class="hero-mens" >
     <div  class="hero-content" >
        MENS
@@ -50,67 +56,7 @@
 </div>
 
 <div class="Items">
-<<<<<<< HEAD:mens.html
 
-  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>
-
-  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>  <div class="Item">
-    <a href="" class="Item__link">
-      <div class="ImageContainer">
-        <img src="/assets/img/unisex-hoodie.png" alt="ALYX Black hoodie" class="Image">
-      </div>
-      <div class="Item__title">ALYX Black hoodie</div>
-      <div class="Item__price">£48.99</div>
-    </a>
-  </div>
-
-=======
   <?php foreach ($items as $item) : ?>
     <?php
     $image_directory = 'assets/img/' . $item['product_name'] . '.webp'; // images are in webp format
@@ -127,7 +73,6 @@
       </a>
     </div>
   <?php endforeach; ?>
->>>>>>> e4e73b694038b540cf927d4ede5ad9705f7e4ff9:mens.php
 </div>
 
   
