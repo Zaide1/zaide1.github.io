@@ -8,35 +8,57 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit;
 }
-
-// Retrieve session data
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-// Prepare and bind SQL statement
-$stmt = $conn->prepare("INSERT INTO orders (order_id, user_id,order_date,order_status,payment_id,order_address_id,order_total) VALUES (?, ?, ?, ?, ?, ?)");
-
 $user_id = $_SESSION['user_id']; // Assuming you have a user_id stored in the session
-$stmt->bind_param("ississ", $user_id, $product_name, $price, $card_number, $expiry_date, $cvv);
 
+$card_number = $_POST['card_number'];
+$expiry_date = $_POST['expiry_date'];
+$sort_code = $_POST['sort-code'];
+$cvv = $_POST['cvv'];
+$default_payment = isset($_POST['default_payment']) ? 1 : 0; // Assuming default_payment is a checkbox
+$address_id = $_SESSION['address_id'];
+
+$sql = "INSERT INTO payment (payment_id, user_id, account_number, expiry_date, sort_code,is_default) VALUES (DEFAULT,$user_id, '$card_number', '$expiry_date', '$sort_code', '$default_payment')";
+$stat = $db ->prepare($sql);
+        $stat ->execute();
+        $payment_id = $db->lastInsertId();
+
+
+// Insert into order_items with the order_id
+$order_sql = "INSERT INTO `orders` (order_id,user_id,order_date,order_status,payment,order_address_id,order_total) VALUES (DEFAULT,$user_id,DEFAULT,1,'$payment_id', '$address_id', 100)";
+$order_stat = $db ->prepare($order_sql);
+    $order_stat ->execute();
+    $order_id = $db->lastInsertId();
+
+   
+$item_stmt = $db ->prepare("INSERT INTO order_items (order_item_id, product_variant_id,quantity,order_id) VALUES (DEFAULT, ?, 1 , ?)");
+
+// Get order items from session cart
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 // Set parameters and execute
 foreach ($cart as $item) {
-    $product_name = $item['product_name'];
-    $price = $item['default_price'];
-    $card_number = $_POST['card_number']; // Assuming you have sanitized user input
-    $expiry_date = $_POST['expiry_date'];
-    $cvv = $_POST['cvv'];
+    $product_id = $item['product_id'];
+    $size_id = $item['size_id'];
 
-    $stmt->execute();
+    // Query to fetch product_variant_id based on product_id and size_id
+    $variant_query = $db->prepare("SELECT variant_id FROM product_entry WHERE product_id = ? AND size_id = ?");
+    $variant_query->execute([$product_id, $size_id]);
+    $variant_result = $variant_query->fetch();
+
+    // If product_variant_id is found, insert into order_items table
+    if ($variant_result) {
+        $product_variant_id = $variant_result['variant_id'];
+        $item_stmt->execute([$product_variant_id, $order_id]);
+    } else {
+        // Handle case where product_variant_id is not found
+        echo "Error: Product variant not found for product_id = $product_id and size_id = $size_id";
+    }
 }
 
-// Close statement and connection
-$stmt->close();
-$conn->close();
 
 // Clear the cart after the order has been processed
 unset($_SESSION['cart']);
 
 // Redirect to a thank you page or display a success message
-header("Location: thank_you.php");
+header("Location: ../thankyou.html");
 exit;
 ?>

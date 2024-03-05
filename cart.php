@@ -51,7 +51,7 @@
             ?>
         </div>
     </div>
-    <a  href="payment.php">
+    <a  href="address.php">
         <button>Buy Now</button>
     </a>
     

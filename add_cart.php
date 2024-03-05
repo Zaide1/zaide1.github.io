@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once('backend/connect_database.php');
 
             $product_id = htmlspecialchars($_POST['product_id']);
+            $size_id = htmlspecialchars($_POST['size']);
 
             $stat = $db->prepare("SELECT product_name, default_price FROM product WHERE product_id = :id;");
             $stat->bindParam(':id', $product_id);
@@ -21,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'product_id' => $product_id,
                     'product_name' => $product['product_name'],
                     'default_price' => $product['default_price'],
+                    'size_id' => $size_id,
                     // Add more details as needed
                 );
 
