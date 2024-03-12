@@ -885,3 +885,162 @@ h1 {
   background-color: #2da6bb;
   color: #fff;
 }
+
+
+.comments-section {
+  font-family: Arial, sans-serif; 
+  max-width: 600px; 
+  margin: 0 auto;
+  background-color: #f9f9f9; 
+  padding: 20px;
+  border-radius: 4px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+.comments-section h3 {
+  text-align: center;
+  color: #333; 
+    margin-bottom: 20px;
+}
+
+.comments-section p {
+  color: #555; 
+  line-height: 1.5;
+}
+
+.comments-section hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc; 
+  margin: 20px 0;
+}
+
+.comments-section .username {
+  font-weight: bold;
+}
+
+.comments-section .rating {
+  color: #f1c40f; }
+
+.comment-rating .star {
+  color: #ddd; 
+  font-size: 18px;
+}
+
+.comment-rating .star.filled {
+  color: #e6a800; }
+
+.comment-rating .star.half {
+  color: #e6a800;   
+}
+
+
+
+.comments-section .comment {
+  margin-bottom: 10px;
+}
+
+.comments-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comments-section li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.comments-section .verified {
+  color: green;
+  font-style: italic;
+}
+
+
+.comment-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; 
+  font-family: 'Arial', sans-serif;
+  width: 50%; 
+  max-width: 500px; 
+}
+
+.comment-form h3 {
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.comment-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.comment-form label {
+  align-self: flex-start; 
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-form select,
+.comment-form textarea,
+.comment-form button {
+  width: 100%; 
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Arial', sans-serif;
+}
+
+.comment-form select {
+  height: 40px;
+}
+
+.comment-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.comment-form button {
+  background-color: #0f1108;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #4cae4c;
+}
+
+
+
+
+
+.cart-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; 
+}
+
+.cart-item img {
+  margin-right: 10px;
+}
+
+.cart-item-details {
+  flex-grow: 1; 
+}
+.remove-btn {
+  background-color: #D7D6D6; 
+  color: #000; 
+  border: none; 
+  cursor: pointer;
+
+  justify-content: flex-end;
+  
+ 
+}
