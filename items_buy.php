@@ -53,14 +53,14 @@ try {
         }
 
         // Fetch product variants
-        $variant_stmt = $db->prepare('SELECT variant_id, price,stock FROM product_entry WHERE product_id = :id;');
-        $variant_stmt->bindParam(':id', $product_id);
-        $variant_stmt->execute();
+        $sizes_stmt = $db->prepare('SELECT pe.size_id, s.size_name FROM product_entry pe INNER JOIN sizes s ON pe.size_id = s.size_id WHERE pe.product_id = :id;');
+        $sizes_stmt->bindParam(':id', $product_id);
+        $sizes_stmt->execute();
 
-        if ($variant_stmt->rowCount() > 0) {
-            $variant_row = $variant_stmt->fetch();
-        } else {
-            echo 'Product variants not found';
+        if ($sizes_stmt->rowCount() > 0) {
+          $sizes = $sizes_stmt->fetchAll(PDO::FETCH_ASSOC);
+      } else {
+          echo 'Sizes not found for this product';
         }
     }
 } catch (PDOException $e) {
@@ -111,16 +111,20 @@ try {
                 <div class="content">
                     <h2><?php echo isset($row['product_name']) ? $row['product_name'] : 'Product not found'; ?></h2>
                     <p><?php echo isset($row['description']) ? $row['description'] : 'Description not found'; ?></p>
-                    <p class="product-sizes">Available sizes:
-                    </p>
                     <h3>Price: £<?php echo isset($row['default_price']) ? $row['default_price'] : 'Product not found'; ?></h3>
                     <div class="purchase-options">
                     <form method="post" action="add_cart.php">
-                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                        <!-- Add more input fields as needed -->
-                        <button type="submit">Add to Cart</button>
-                    </form>
-                </div>
+                          <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                          <label for="size">Available sizes:</label>
+                          <select name="size">
+                            <?php foreach ($sizes as $size) : 
+                              $keyAsString = strval($size['size_id']); ?>
+                              <option value="<?php echo $keyAsString; ?>"><?php echo $size['size_name']; ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                          <button type="submit">Add to Cart</button>
+                      </form>
+                    </div>
                     
                 </div>
 
