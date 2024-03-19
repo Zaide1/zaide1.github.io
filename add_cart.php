@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $product_id = htmlspecialchars($_POST['product_id']);
             $size_id = htmlspecialchars($_POST['size']);
-
+            $quantity = htmlspecialchars($_POST['quantity']);
             $stat = $db->prepare("SELECT product_name, default_price FROM product WHERE product_id = :id;");
             $stat->bindParam(':id', $product_id);
             $stat->execute();
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'product_name' => $product['product_name'],
                     'default_price' => $product['default_price'],
                     'size_id' => $size_id,
+                    'quantity' => $quantity
                     // Add more details as needed
                 );
 

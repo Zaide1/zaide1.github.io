@@ -47,16 +47,21 @@
                 $default_image = 'assets/img/outer.png'; // Default image path if product image not found
                 $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
 
+
                 echo '<div class="cart-item" id="cart-item-' . $key . '">';
                 echo '<img src="' . $image_path . '" alt="' . $item['product_name'] . '" width="100px" height="100px">';
                 echo '<p>Product: ' . $item['product_name'] . ' | Price: £' . $item['default_price'] . '</p>';
                 echo '<button class="remove-btn" onclick="removeItem(' . $key . ')">Remove</button>';
                 echo '</div>';
+
             }
         } else {
             echo '<p>Your cart is empty</p>';
         }
         ?>
+        <a  href="address.php">
+        <button>Buy Now</button>
+    </a>
     </div>
 </div>
 

@@ -6,39 +6,60 @@
     <title>Alyx Clothing</title>
 </head>
 <body>
-    <?php 
-    session_start();
-    var_dump($_SESSION);
-    if(isset($_POST['submitted'])){
-        require_once('backend/connect_database.php');
+    
+<?php 
+session_start();
+var_dump($_SESSION);
 
-        if (!isset($_SESSION['user_id'])) {
-            // Redirect to login page or display an error message
-            header("Location: login.html");
-            exit;
-        }
-        $user_id = $_SESSION['user_id']; // Assuming you have a user_id stored in the session
-        $street = isset($_POST['street_name'])?$_POST['street_name']:false;
-        $city = isset($_POST['city'])?$_POST['city']:false;
-        $post_code = isset($_POST['post_code'])?$_POST['post_code']:false;
-        $country = isset($_POST['country'])?$_POST['country']:false;
+if(isset($_POST['submitted'])){
+    require_once('backend/connect_database.php');
 
-
-        
-        $sql = "INSERT INTO user_address (user_id, address_id, is_default,street_name,city,post_code,country) VALUES ($user_id,DEFAULT,TRUE, '$street', '$city', '$post_code','$country')";
-        $stat = $db ->prepare($sql);
-        $stat ->execute();
-        $address_id = $db->lastInsertId();
-
-        $_SESSION['address_id'] = $address_id;
-        header("Location: payment.php");
+    if (!isset($_SESSION['user_id'])) {
+        // Redirect to login page or display an error message
+        header("Location: login.html");
         exit;
     }
-    
-        
+    $user_id = $_SESSION['user_id']; // Assuming you have a user_id stored in the session
+    $street = isset($_POST['street_name'])?$_POST['street_name']:false;
+    $city = isset($_POST['city'])?$_POST['city']:false;
+    $post_code = isset($_POST['post_code'])?$_POST['post_code']:false;
+    $country = isset($_POST['country'])?$_POST['country']:false;
 
-    
-    ?>
+    // Check if the address already exists for the user
+    $sql = "SELECT address_id FROM user_address WHERE user_id = :user_id AND street_name = :street AND city = :city AND post_code = :post_code AND country = :country";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':street', $street);
+    $stmt->bindParam(':city', $city);
+    $stmt->bindParam(':post_code', $post_code);
+    $stmt->bindParam(':country', $country);
+    $stmt->execute();
+    $existing_address = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existing_address) {
+        // Use the existing address_id
+        $address_id = $existing_address['address_id'];
+    } else {
+        // Insert a new address
+        $sql = "INSERT INTO user_address (user_id, address_id, is_default, street_name, city, post_code, country) VALUES (:user_id, DEFAULT, TRUE, :street, :city, :post_code, :country)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':street', $street);
+        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':post_code', $post_code);
+        $stmt->bindParam(':country', $country);
+        $stmt->execute();
+        $address_id = $db->lastInsertId();
+    }
+
+    // Store the address_id in the session
+    $_SESSION['address_id'] = $address_id;
+
+    header("Location: payment.php");
+    exit;
+}
+?>
+
     <form action="address.php" method="post">
         <label for="street_name">Street Name</label>
             <input type="text" id='street_name' name='street_name'>
