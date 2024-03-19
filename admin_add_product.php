@@ -59,14 +59,35 @@
                     $sizes = $stmt_size->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($sizes as $size) {
-                        echo '<input type="checkbox" name="selected_sizes[]" value="' . $size['size_id'] . '"> ' . $size['size_name'] . '<br>';
+                        echo '<div>';
+                        echo '<input type="checkbox" name="selected_sizes[]" value="' . $size['size_id'] . '" onclick="addStockInput(this, ' . $size['size_id'] . ')"> ' . $size['size_name'];
+                        echo '</div>';
                     }
                 ?>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" class="form-control" name="price">
             </div>
 
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
     </div>
+
+    <script>
+    function addStockInput(checkbox, sizeId) {
+        // Create a new input element for stock level
+        var stockInput = document.createElement("input");
+        stockInput.type = "number";
+        stockInput.name = "stock_levels[" + sizeId + "]";
+        stockInput.placeholder = "Stock Level";
+        
+        // Append the input field after the checkbox
+        checkbox.parentNode.appendChild(stockInput);
+    }
+    </script>
+
 
     
 </body>

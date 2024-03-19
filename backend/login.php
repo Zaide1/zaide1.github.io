@@ -11,7 +11,7 @@ if(isset($_POST['submitted'])){
         $password = $_POST['password'];
 
     
-        $stat = $db->prepare('SELECT Password FROM user WHERE Username = ?');
+        $stat = $db->prepare('SELECT user_id, Password FROM user WHERE Username = ?');
         $stat -> execute(array($username));
 
         if($stat -> rowCount()>0){
@@ -20,8 +20,8 @@ if(isset($_POST['submitted'])){
             if(password_verify($password,$row['Password'])){
                 session_start();
                 $_SESSION['username'] = $_POST['username'];
-                header("Location:../index.html");
-                exit();
+                $_SESSION['user_id'] = $row['user_id'];
+                header("Location:../index.php");
             } else{
                 echo "<p style='color:red'> Error logging in, passwords do not match </p>";
                 

@@ -7,11 +7,12 @@
     $colour_input = $_POST['colours'];
     $colours_array = explode(',', $colour_input);
     $price = $_POST['price'];
+    $stock = $_POST['stock_levels'];
 
 
     try{
         $stat = $db ->prepare("INSERT INTO product VALUES (default,?,?,?,?)");
-        $stat ->execute(array($product_name,$category,$description));
+        $stat ->execute(array($product_name,$category,$description,$price));
         $product_id = $db->lastInsertId();
 
         foreach ($colours_array as $colour) {
@@ -39,20 +40,21 @@
             echo "Colour: $colour, Colour ID: $colour_id<br>";
         
             // Process sizes separately for each color
-            foreach ($selected_sizes as $size) {
+            foreach ($selected_sizes as $size_id) {
                 // Insert into product_entry using the obtained colour_id and size
-                $insert_variant_query = "INSERT INTO product_entry VALUES (DEFAULT, ?, ?, ?, ?, 0)";
+                $insert_variant_query = "INSERT INTO product_entry VALUES (DEFAULT, ?, ?, ?, ?, ?)";
                 $stmt_variant = $db->prepare($insert_variant_query);
-                $stmt_variant->execute([$product_id, $size, $colour_id,$price]);
+                $stmt_variant->execute([$product_id, $size_id, $colour_id, $price,$stock[$size_id]]);
             }
         }
-        header('Location: ../index.html');
+        header('Location: ../index.php');
         exit();
 
     } 
     catch(PDOException $ex){
         echo "Sorry a database error occured";
         echo "Your details are <em>". $ex->getMessage()."</em>";
+        echo "<p> " . $stock[1] . "</p>";
     }
  
 ?>

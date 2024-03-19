@@ -21,7 +21,7 @@
 
                 $id = $db ->lastInsertId();
                 echo "Congratulations you are now registered your ID is: " . $id;
-                header('Location: ../index.html');
+                header('Location: ../index.php');
             } 
             catch(PDOException $ex){
                 echo "Sorry a database error occured";

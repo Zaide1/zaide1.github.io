@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:wght@700&family=Lato:wght@300&family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Lato:wght@300&family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <title>Clothing Store</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+         <a href="../index.html"><img src="../assets/img/logo-header.png" alt="Logo"></a>
+      </div>
+      <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="mens.html" >Mens</a>
+          <a href="womens.html">Womens</a>
+          <a href="featured.html">Featured</a>
+          <a href="myaccount.html">My Account</a>
+          <a href="login.html" >Login</a>
+          <a href="contact.html">Contact</a>
+      </div>
+  </nav>
+<script>
+    function changeColor(element) {
+  // Remove 'clicked' class from all size-box elements
+  const sizeBoxes = document.querySelectorAll('.size-box');
+  sizeBoxes.forEach(box => box.classList.remove('clicked'));
+
+  // Add 'clicked' class to the clicked element
+  element.classList.add('clicked');
+}
+</script>
+</script>
+
+<div class="body2">
+  <div class="container">
+    <div class="imgBx">
+        <img src="../assets/img/unisex-hoodie.png" alt="Unisex Hoodie">
+    </div>
+    <div class="details">
+        <div class="content">
+            <h2>ALYX Box hoodie<br>
+                <span>Original Collection</span>
+            </h2>
+            <p>
+                Be a part of the first drop of the ALYX box logo hoodie. made out of 100% cotton, this hoodie is sure to keep you warm through winter.
+                 The hoodie features a stylish hoodie pull that is customised with "OG DROP #01" There are only 100 of these hoodies for sale so you can show off your exclusivity.
+            </p>
+            <p class="product-colors">Available sizes:
+                <span class="size-box" onclick="changeColor(this)">S</span>
+                <span class="size-box" onclick="changeColor(this)">M</span>
+                <span class="size-box" onclick="changeColor(this)">L</span>
+                <span class="size-box" onclick="changeColor(this)">XL</span>
+            </p>
+            <h3>£48.99</h3>
+            <button>Add to cart</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Footer -->
+
+
+
+
+</body>
+
+<footer class="footer">
+  <div class="footer__addr">
+    <h1 class="footer__logo"><img src="/assets/img/logo-header.png" width="200"></h1>
+        
+    <h2>Contact</h2>
+    
+    <address>
+      Aston University<br>Aston St, Birmingham<br> B4 7ET<br>
+          
+      <a class="footer__btn" href="mailto:example@gmail.com">Email Us</a>
+    </address>
+  </div>
+  
+  <ul class="footer__nav">
+    <li class="nav__item">
+      
+      <h2 class="nav__title">Useful Links</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Mens</a>
+        </li>
+
+        <li>
+          <a href="#">Womens</a>
+        </li>
+            
+        <li>
+          <a href="#">Featured</a>
+        </li>
+        <li>
+          <a href="#">My Account</a>
+
+          <li>
+            <a href="#">Sitemap</a>
+          </li>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav__item">
+      
+      <h2 class="nav__title">Newsletter</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Mens</a>
+        </li>
+
+        <li>
+          <a href="#">Womens</a>
+        </li>
+            
+        <li>
+          <a href="#">Featured</a>
+        </li>
+        <li>
+          <a href="#">My Account</a>
+
+          <li>
+            <a href="#">Sitemap</a>
+          </li>
+        </li>
+      </ul>
+    </li>
+    
+
+  
+  </ul>
+  
+  <div class="legal">
+    <p>&copy; 2023 ALYX. All rights reserved.</p>
+    
+    <div class="legal__links">
+    </div>
+  </div>
+</footer>
+</html>
