@@ -122,6 +122,9 @@ try {
                               <option value="<?php echo $keyAsString; ?>"><?php echo $size['size_name']; ?></option>
                             <?php endforeach; ?>
                           </select>
+                          <div id="stockWarning" style="color: red;"></div> <!-- Warning message container -->
+                          <label for="quantity">Quantity:</label>
+                          <input type="number" min="1" max="12" step="1" id="quantity" name="quantity" value="1">
                           <button type="submit">Add to Cart</button>
                       </form>
                     </div>
