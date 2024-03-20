@@ -2,13 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost/zaide1.github.io-main/assets/css/main.css">
+
     <title>Clothing Store</title>
 </head>
 <body>
-    <nav class="navbar">
-        <!-- Navbar content -->
+<nav class="navbar">
+        <div class="logo">
+            <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.php">Home</a>
+            <a href="mens.php">Mens</a>
+            <a href="womens.php">Womens</a>
+            <a href="cart.php" class="active">Basket</a>
+            <a href="myaccount.php">My Account</a>
+            <a href="login.html">Login</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
-
     <div class="container2">
         <div class="cart-section">
             <h2>Your Shopping Cart</h2>
@@ -75,8 +87,8 @@
 
                 <label for="default_payment">Default Payment:</label>
                 <input type="checkbox" id="default_payment" name="default_payment">
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Pay Now</button>
 
-                <input type="submit" value="Pay Now">
             </form>
         </div>
     </div>
