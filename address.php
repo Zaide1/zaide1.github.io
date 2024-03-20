@@ -3,72 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Lato:wght@300&family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost/zaide1.github.io-main/assets/css/main.css">
+
     <title>Alyx Clothing</title>
-</head>
-<body>
     
-<?php 
-session_start();
-var_dump($_SESSION);
+</head>
+<nav class="navbar">
+        <div class="logo">
+            <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.php">Home</a>
+            <a href="mens.php">Mens</a>
+            <a href="womens.php">Womens</a>
+            <a href="cart.php" class="active">Basket</a>
+            <a href="myaccount.php">My Account</a>
+            <a href="login.html">Login</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+<body>
+    <?php 
+    session_start();
+   // var_dump($_SESSION);
+    if(isset($_POST['submitted'])){
+        require_once('backend/connect_database.php');
 
-if(isset($_POST['submitted'])){
-    require_once('backend/connect_database.php');
+        if (!isset($_SESSION['user_id'])) {
+            // Redirect to login page or display an error message
+            header("Location: login.html");
+            exit;
+        }
+        $user_id = $_SESSION['user_id']; // Assuming you have a user_id stored in the session
+        $street = isset($_POST['street_name'])?$_POST['street_name']:false;
+        $city = isset($_POST['city'])?$_POST['city']:false;
+        $post_code = isset($_POST['post_code'])?$_POST['post_code']:false;
+        $country = isset($_POST['country'])?$_POST['country']:false;
 
-    if (!isset($_SESSION['user_id'])) {
-        // Redirect to login page or display an error message
-        header("Location: login.html");
-        exit;
-    }
-    $user_id = $_SESSION['user_id']; // Assuming you have a user_id stored in the session
-    $street = isset($_POST['street_name'])?$_POST['street_name']:false;
-    $city = isset($_POST['city'])?$_POST['city']:false;
-    $post_code = isset($_POST['post_code'])?$_POST['post_code']:false;
-    $country = isset($_POST['country'])?$_POST['country']:false;
 
-    // Check if the address already exists for the user
-    $sql = "SELECT address_id FROM user_address WHERE user_id = :user_id AND street_name = :street AND city = :city AND post_code = :post_code AND country = :country";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->bindParam(':street', $street);
-    $stmt->bindParam(':city', $city);
-    $stmt->bindParam(':post_code', $post_code);
-    $stmt->bindParam(':country', $country);
-    $stmt->execute();
-    $existing_address = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($existing_address) {
-        // Use the existing address_id
-        $address_id = $existing_address['address_id'];
-    } else {
-        // Insert a new address
-        $sql = "INSERT INTO user_address (user_id, address_id, is_default, street_name, city, post_code, country) VALUES (:user_id, DEFAULT, TRUE, :street, :city, :post_code, :country)";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':street', $street);
-        $stmt->bindParam(':city', $city);
-        $stmt->bindParam(':post_code', $post_code);
-        $stmt->bindParam(':country', $country);
-        $stmt->execute();
+        
+        $sql = "INSERT INTO user_address (user_id, address_id, is_default,street_name,city,post_code,country) VALUES ($user_id,DEFAULT,TRUE, '$street', '$city', '$post_code','$country')";
+        $stat = $db ->prepare($sql);
+        $stat ->execute();
         $address_id = $db->lastInsertId();
-    }
 
-    // Store the address_id in the session
-    $_SESSION['address_id'] = $address_id;
-
-    header("Location: payment.php");
-    exit;
-}
-?>
-
+        $_SESSION['address_id'] = $address_id;
+        header("Location: payment.php");
+        exit;
+    }            
+    ?>
     <form action="address.php" method="post">
         <label for="street_name">Street Name</label>
-            <input type="text" id='street_name' name='street_name'>
+            <input type="text" id='street_name' name='street_name' required>
         <label for="city">City</label>
-            <input type="text" id='city' name='city'>
+            <input type="text" id='city' name='city' required>
         <label for="post_code">Post/Zip Code</label>
-            <input type="text" id='postcode' name='post_code'>
+            <input type="text" id='postcode' name='post_code' required>
         <label for="country">Country</label><span style="color: red !important; display: inline; float: none;">*</span>      
-            <select id="country" name="country" class="form-control">
+            <select id="country" name="country" class="form-control" required>
             <option value="GB">United Kingdom</option>
             <option value="AL">Albania</option>
             <option value="AD">Andorra</option>
