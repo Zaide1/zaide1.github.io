@@ -1,10 +1,13 @@
 <?php
-session_start();
-
-// Check if the user is logged in
-if (isset($_SESSION['username'])) {
-    $loggedInUser = $_SESSION['username'];
-}
+  session_start();
+  // Check if the user is logged in
+  if (isset($_SESSION['username'])) {
+      $loggedInUser = $_SESSION['username'];
+      // Flag to indicate if the welcome banner should be shown
+      $showWelcomeBanner = true;
+      // Unset the session variable to avoid showing the banner again on page refresh
+      unset($_SESSION['username']);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +25,27 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="/assets/css/main.css">
 
     <title>Clothing Store</title>
+    <style>
+        .welcome-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #4CAF50; 
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 9999; 
+            display: none; 
+        }
+    </style>
   </head>
   <body>
+    <!-- Add the welcome banner -->
+    <?php if (isset($showWelcomeBanner) && $showWelcomeBanner) : ?>
+      <div class="welcome-banner" id="welcomeBanner">Welcome, <?php echo $loggedInUser; ?>!</div>
+    <?php endif; ?>  
+
     <nav class="navbar">
       <div class="logo">
           <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
@@ -61,10 +83,18 @@ if (isset($_SESSION['username'])) {
   <div class="info-box" id="featured">
     Featured items<br>
     <div class="image-container">
-      <div class="square-image"><img src="assets/img/outer.png" alt="Logo" width="250px" height="250px"></div>
-      <div class="square-image"><img src="assets/img/bottoms.png" alt="Logo" width="250px" height="250px"></div>
-      <div class="square-image"><img src="assets/img/accessories.png" alt="Logo" width="250px" height="250px"></div>
-      <div class="square-image"><img src="assets/img/shoes.png" alt="Logo" width="250px" height="250px"></div>
+      <a href="./mens.php">
+        <div class="square-image"><img src="assets/img/outer.png" alt="Logo" width="250px" height="250px"></div>
+      </a>
+      <a href="./mens.php">
+        <div class="square-image"><img src="assets/img/bottoms.png" alt="Logo" width="250px" height="250px"></div>
+      </a>
+      <a href="./womens.php">
+        <div class="square-image"><img src="assets/img/accessories.png" alt="Logo" width="250px" height="250px"></div>
+      </a>
+      <a href="./womens.php">
+        <div class="square-image"><img src="assets/img/shoes.png" alt="Logo" width="250px" height="250px"></div>
+      </a>
 
     </div>
   </div>
@@ -84,6 +114,22 @@ if (isset($_SESSION['username'])) {
     </div>
   </div>
 </div>
+
+  <script>
+    // Function to show the welcome banner and hide it after 5 seconds
+    function showWelcomeBanner() {
+        var welcomeBanner = document.getElementById('welcomeBanner');
+        welcomeBanner.style.display = 'block';
+        // setTimeout(function() {
+        //     welcomeBanner.style.display = 'none';
+        // }, 5000); // Hide after 5 seconds
+    }
+
+    // Call the function when the page is loaded
+    window.onload = function() {
+        showWelcomeBanner();
+    };
+  </script>
 </body>
 
 <footer class="footer">
