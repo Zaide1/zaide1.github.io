@@ -30,8 +30,7 @@
                 </select>
             </div>
 
-            <!-- Add fields here to edit product details -->
-
+            
             <button type="submit" class="btn btn-primary">Edit Product</button>
         </form>
     </div>
