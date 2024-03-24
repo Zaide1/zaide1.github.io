@@ -31,6 +31,50 @@
             </div>
 
             <!-- Add fields here to edit product details -->
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <input type="text" class="form-control" name="product_name" id="product_name">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" name="category" id="category">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" name="description" id="description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" class="form-control" name="price" id="price">
+            </div>
+
+            <div class="form-group">
+                <label for="colours">Colours (comma-separated):</label>
+                <input type="text" class="form-control" name="colours" id="colours">
+            </div>
+
+            <div class="form-group">
+                <label for="selected_sizes">Selected Sizes:</label>
+                <?php
+                // Fetch sizes from the database
+                $size_query = "SELECT size_id, size_name FROM sizes";
+                $stmt_size = $db->query($size_query);
+                 $sizes = $stmt_size->fetchAll(PDO::FETCH_ASSOC);
+
+                // Loop through each size to create checkboxes
+                foreach ($sizes as $size) {
+                    ?>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="selected_sizes[]" id="size_<?php echo $size['size_id']; ?>" value="<?php echo $size['size_id']; ?>">
+                        <label class="form-check-label" for="size_<?php echo $size['size_id']; ?>"><?php echo $size['size_name']; ?></label>
+                    </div>
+                    <?php
+                }
+                ?>    
+            </div>
 
             <button type="submit" class="btn btn-primary">Edit Product</button>
         </form>
@@ -41,4 +85,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
-
