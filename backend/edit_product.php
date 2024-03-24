@@ -56,7 +56,7 @@ try {
     }
 
     // Redirect to index page after successful update
-    header('Location: ../index.php');
+    header('Location: ../admin_homepage.php');
     exit();
 } catch (PDOException $ex) {
     // Handle database error
