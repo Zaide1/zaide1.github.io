@@ -19,20 +19,18 @@
   <body>
     <?php
     require_once('backend/connect_database.php');
-
-    $items = []; // Initialize an array to store the items
-    $query = $db->query("SELECT product_name, default_price,product_id FROM product WHERE category_id = 1");
-    if ($query) {
-      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        $items[] = $row; // Store each item in the array
-      }
-    }
-  ?>
+    ?>
+    
    <nav class="navbar">
       <div class="logo">
           <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
+        <form class="form-inline my-2 my-lg-0" action="search_result.php" method = "GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="<?php echo htmlspecialchars('search'); ?>">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+		    <input type='hidden' name="<?php echo htmlspecialchars('submitted'); ?>">
+        </form>
           <a href="index.php" >Home</a>
           <a href="mens.php"class="active">Mens</a>
           <a href="womens.php">Womens</a>
@@ -47,6 +45,24 @@
           <a href="contact.html">Contact</a>
       </div>
   </nav>
+  <?php
+    
+
+    // Prepare the SQL statement with named placeholders
+$query = $db->prepare("SELECT product_name, default_price, product_id, `description` FROM product WHERE product_name LIKE :search_query OR `description` LIKE :search_query");
+
+// Bind the search query to the named placeholder
+$search_query = '%' . $_GET['search'] . '%';
+$query->bindParam(':search_query', $search_query, PDO::PARAM_STR);
+
+// Execute the prepared statement
+$query->execute();
+
+// Fetch the results
+while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    $items[] = $row; // Store each item in the array
+}
+  ?>
   
   <div class="hero-mens" >
     <div  class="hero-content" >
@@ -83,6 +99,7 @@
 <div class="Items">
 
 <?php 
+if (!empty($items)) {
     // Sort the items based on the selected option
     $sorted_items = $items; 
     
@@ -99,25 +116,28 @@
             });
         }
     }
-  ?>
 
-  <?php foreach ($sorted_items as $item) : ?>
-    <?php
-    $image_directory = 'assets/img/' . $item['product_name'] . '.webp'; // images are in webp format
-    $default_image = 'assets/img/outer.png'; // Default image path if product image not found
-    $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
-    ?>
-    <div class="Item">
-      <a href="items_buy.php?id=<?php echo htmlspecialchars($item['product_id']); ?>" class="Item__link">
-        <div class="ImageContainer">
-          <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px" class="Image">
+    foreach ($sorted_items as $item) {
+        $image_directory = 'assets/img/' . $item['product_name'] . '.webp'; // images are in webp format
+        $default_image = 'assets/img/outer.png'; // Default image path if product image not found
+        $image_path = file_exists($image_directory) ? $image_directory : $default_image; // Set image source based on existence
+        ?>
+        <div class="Item">
+            <a href="items_buy.php?id=<?php echo htmlspecialchars($item['product_id']); ?>" class="Item__link">
+                <div class="ImageContainer">
+                    <img src="<?php echo $image_path; ?>" alt="Item Image" width="400px" height="400px" class="Image">
+                </div>
+                <div class="Item__title"><?php echo $item['product_name']; ?></div>
+                <div class="Item__price">£ <?php echo $item['default_price']; ?></div>
+            </a>
         </div>
-        <div class="Item__title"><?php echo $item['product_name']; ?></div>
-        <div class="Item__price">£ <?php echo $item['default_price']; ?></div>
-      </a>
-    </div>
-  <?php endforeach; ?>
-</div>
+    <?php
+    }
+} else {
+    echo "No results found.";
+}
+?>
+
 
   
 </body>

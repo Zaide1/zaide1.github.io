@@ -51,6 +51,12 @@
           <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
       </div>
       <div class="nav-links">
+        <form class="form-inline my-2 my-lg-0" action = "search_result.php" method="GET">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="<?php echo htmlspecialchars('search'); ?>">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+          <input type='hidden' name="<?php echo htmlspecialchars('submitted'); ?>">
+          
+        </form>
           <a href="index.php" class="active">Home</a>
           <a href="mens.php">Mens</a>
           <a href="womens.php">Womens</a>
