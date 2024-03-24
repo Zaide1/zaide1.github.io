@@ -3,24 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://localhost/zaide1.github.io-main/assets/css/main.css">
-
+    <link rel="stylesheet" href="./assets/css/payment.css">
     <title>Clothing Store</title>
 </head>
 <body>
-<nav class="navbar">
-        <div class="logo">
-            <a href="index.php"><img src="assets/img/logo-header.png" alt="Logo"></a>
-        </div>
-        <div class="nav-links">
-            <a href="index.php">Home</a>
-            <a href="mens.php">Mens</a>
-            <a href="womens.php">Womens</a>
-            <a href="cart.php" class="active">Basket</a>
-            <a href="myaccount.php">My Account</a>
-            <a href="login.html">Login</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </nav>
+    <?php require("nav.php") ?>
     <div class="container2">
         <div class="cart-section">
             <h2>Your Shopping Cart</h2>
@@ -71,25 +58,32 @@
             ?>
 
             <!-- Payment form -->
-            <form method="post" action="backend/process_order.php">
+            <div class="container">
                 <h2>Payment Details</h2>
-                <label for="card_number">Card Number:</label>
-                <input type="text" id="card_number" name="card_number" maxlength = "16" required><br><br>
-
-                <label for="expiry_date">Expiry Date:</label>
-                <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YYYY" required><br><br>
-
-                <label for="sort-code">Sort Code:</label>
-                <input type="text" id="sort-code" name="sort-code" required><br><br>
-
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" required><br><br>
-
-                <label for="default_payment">Default Payment:</label>
-                <input type="checkbox" id="default_payment" name="default_payment">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Pay Now</button>
-
-            </form>
+                <form method="post" action="backend/process_order.php">
+                    <div class="form-group">
+                        <label for="card_number">Card Number</label>
+                        <input type="text" id="card_number" name="card_number" placeholder="Enter card number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sort-code">Sort Code</label>
+                        <input type="text" id="sort-code" name="sort-code" placeholder="Enter card number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry_date">Expiry Date</label>
+                        <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YYYY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="default_payment" name="default_payment">
+                        <label class="inline" for="default_payment">Default Payment</label>
+                    </div>
+                    <button type="submit">Submit Payment</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

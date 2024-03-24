@@ -1,0 +1,110 @@
+/* Import common styles from style.css */
+@import url('style.css');
+
+/* Override or add specific styles for payment and address pages */
+/* Define main colors */
+body {
+  background-color: #d7d6d6; /* Example background color */
+}
+
+/* Apply common typography */
+body {
+  font-family: 'Roboto', sans-serif; /* Example font family */
+  font-size: 16px; /* Example font size */
+}
+
+/* Maintain consistent layout */
+.container2 {
+  max-width: 1300px; /* Example max width */
+  margin: 20px auto; /* Example margin */
+}
+
+/* Button styles */
+button {
+  background-color: #0f1108; /* Example button background color */
+  color: #fff; /* Example button text color */
+  padding: 10px 20px; /* Example padding */
+  border: none; /* Example border */
+  border-radius: 5px; /* Example border radius */
+  cursor: pointer; /* Example cursor */
+}
+
+/* Input field styling */
+input[type="text"] {
+  width: 100%; /* Example width */
+  padding: 10px; /* Example padding */
+  border: 1px solid #ccc; /* Example border color */
+  border-radius: 5px; /* Example border radius */
+}
+
+/* Link styles */
+a {
+  color: #2da6bb; /* Example link color */
+  text-decoration: none; /* Example link text decoration */
+}
+
+a:hover {
+  color: #1845ad; /* Example link color on hover */
+  text-decoration: underline; /* Example link text decoration on hover */
+}
+
+
+/* address.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #000;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+
+}
